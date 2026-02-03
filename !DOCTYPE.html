@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Charmitha 💘</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      z-index: 2;
+      padding: 20px;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    #yesBtn {
+      background-color: #ff2e63;
+      color: white;
+      margin-right: 10px;
+    }
+
+    #noBtn {
+      background-color: white;
+      color: #ff2e63;
+      position: absolute;
+    }
+
+    .message {
+      color: white;
+      font-size: 2rem;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.5); }
+      to { transform: scale(1); }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="main">
+  <h1>Charmitha 💕<br>Will you be my Valentine?</h1>
+  <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+  <button id="noBtn" onclick="sayNo()">No 💔</button>
+</div>
+
+<script>
+  let yesScale = 1;
+  const noBtn = document.getElementById("noBtn");
+
+  function sayNo() {
+    yesScale += 0.25;
+    document.getElementById("yesBtn").style.transform = `scale(${yesScale})`;
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  function sayYes() {
+    document.body.innerHTML = `
+      <div class="message">
+        YAYYY!!! 💘🥰<br><br>
+        Charmitha ❤️<br>
+        You just made<br>
+        <b>Mahant</b> the happiest person ever 🥹💖<br><br>
+        Happy Valentine’s Day 💐<br>
+        I love you 💕<br><br>
+        <button onclick="pageThree()" style="margin-top: 20px; padding: 12px 24px; border-radius: 20px; font-size: 1rem;">
+          Next Surprise 🎁
+        </button>
+      </div>
+    `;
+  }
+
+  function pageThree() {
+    document.body.innerHTML = `
+      <div class="message">
+        🌟 SURPRISE 🌟<br><br>
+        Choose a heart to receive a secret message! 💖<br><br>
+        <button onclick="showSecret('I love you more every day 💞')" style="margin: 10px; padding: 12px 24px; border-radius: 20px;">💗</button>
+        <button onclick="showSecret('You’re my dream come true ✨')" style="margin: 10px; padding: 12px 24px; border-radius: 20px;">💓</button>
+        <button onclick="showSecret('Let’s stay together forever 🥰')" style="margin: 10px; padding: 12px 24px; border-radius: 20px;">💖</button>
+      </div>
+    `;
+  }
+
+  function showSecret(text) {
+    document.body.innerHTML = `
+      <div class="message">
+        ${text}<br><br>
+        💘💘💘<br><br>
+        <button onclick="location.reload()" style="padding: 12px 24px; border-radius: 20px;">Restart</button>
+      </div>
+    `;
+  }
+
+  // Floating hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }, 300);
+</script>
+
+</body>
+</html>
